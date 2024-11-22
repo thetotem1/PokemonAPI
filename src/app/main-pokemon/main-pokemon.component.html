@@ -1,0 +1,78 @@
+<div class="container">
+  <h2>Pokédex</h2>
+
+  <!-- Pokémon List Section -->
+  <header
+    *ngIf="pokemonResult?.results?.length"
+    class="pokemon-list red-background"
+  >
+    <div *ngFor="let pokemon of getDisplayedPokemons(); let i = index" class="pokemon-item">
+      <!-- Pokémon Name Button -->
+      <button *ngIf="pokemon?.url" (click)="getPokemon(currentIndex - 1 + i)">
+        {{ pokemon.name | titlecase }}
+      </button>
+
+      <!-- Pokémon Sprite -->
+      <img [src]="pokemon.simplePokemonImage" [alt]="pokemon.name" class="pokemon-sprite" />
+    </div>
+  </header>
+
+  <!-- Bottom Section -->
+  <div class="bottom-section">
+    <!-- Left Side: Additional Information -->
+    <aside *ngIf="showDetails && pokemonDetail" class="additional-info">
+      <h3>Description</h3>
+      <p>{{ pokemonDetail.pokemonDescription || 'No description available.' }}</p>
+    </aside>
+
+    <div class="sprite-container" (click)="toggleFlip()">
+      <div class="sprite" [ngClass]="{ 'flipped': isFlipped }">
+        <!-- Front Sprite -->
+        <img
+          class="front"
+          [src]="frontSprite"
+          alt="Front Sprite"
+        />
+
+        <!-- Back Sprite -->
+        <img
+          class="back"
+          [src]="backSprite"
+          alt="Back Sprite"
+        />
+      </div>
+    </div>
+
+
+
+
+    <!-- Right Side: Pokémon Details -->
+    <section
+      *ngIf="showDetails && pokemonDetail"
+      class="pokemon-details"
+      [ngClass]="pokemonDetail.types[0]?.type?.name || 'default-type'"
+    >
+      <!-- ID Positioned at the Top Left -->
+      <div class="pokemon-id">
+        <strong>#{{ pokemonDetail.id }}</strong>
+      </div>
+
+      <h3>{{ pokemonDetail.name | titlecase }}</h3>
+      <img
+        [src]="isShiny ? pokemonDetail.sprites.other['official-artwork'].front_shiny : pokemonDetail.sprites.other['official-artwork'].front_default"
+        [alt]="pokemonDetail.name"
+      />
+
+      <div class="pokemon-types">
+        <strong>Type(s):</strong>
+        <div *ngFor="let type of pokemonDetail.typesIcon">
+          <img [src]="type" alt="Type Icon">
+        </div>
+      </div>
+
+      <button (click)="toggleShiny()">
+        {{ isShiny ? 'Show Default' : 'Show Shiny' }}
+      </button>
+    </section>
+  </div>
+</div>

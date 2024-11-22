@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {MainHttpComponent} from './main-http/main-http.component';
+import {MainPokemonComponent} from './main-pokemon/main-pokemon.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/main-http', pathMatch: 'full'},
-  {path: 'main-http', component: MainHttpComponent}
+  {path: '', redirectTo: '/main-pokemon', pathMatch: 'full'},
+  {path: 'main-pokemon', component: MainPokemonComponent}
 ];
 
 @NgModule({

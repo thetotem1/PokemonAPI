@@ -3,16 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home/home.component';
-import { MainHttpComponent } from './main-http/main-http.component';
 import {CommonModule} from '@angular/common';
 import {provideHttpClient} from '@angular/common/http';
+import { MainPokemonComponent } from './main-pokemon/main-pokemon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    MainHttpComponent
+    MainPokemonComponent
   ],
   imports: [
     BrowserModule,
